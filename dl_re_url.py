@@ -34,7 +34,9 @@ def download(file_path, pic_url):
         f.write(r.content)
 
 def main():
-    html_text = get_html('http://xyz.com/series')
+    # 使用时修改url即可
+    url = 'http://xyz.com/series'
+    html_text = get_html(url)
     pic_list = parse_html(html_text)
 
     os.makedirs('./pic/', exist_ok=True)  # 输出目录
