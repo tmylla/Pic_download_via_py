@@ -38,13 +38,29 @@ dl_re_url.py：未知图片url，通过正则表达式获得pic_urls列表pic_li
 
 dl_bs4_url.py：未知图片url，Beautiful Soup解析获得pic_urls列表pic_list，然后依次下载图片。
 
-**TO BE CONTINUED!**
+不同网站解析方式有所不同，dl_bs4_url.py以豆瓣图片下载为例。
 
 ​	
 
 ### 可能遇到的问题
 
 - 网站反爬虫机制
+
+  1. User-Agent：模拟浏览器访问，添加后，服务器会认为是浏览器正常的请求。
+  2. Referer：浏览器以此来判断你从哪一个网页跳转过来。
+  3. ip伪装：构建ip池。
+  4. Cookie伪装：cookie是服务器用来辨别你此时的状态的，每一次向服务器请求cookie都会随之更新。
+
 - 常用正则式匹配
-- js渲染的页面get不到完整页面源码
-- 待解决...
+
+  - 强烈推荐[正则表达式30分钟入门教程](https://www.jb51.net/tools/zhengze.html)
+
+- 网页的数据采用异步加载，如js渲染的页面或ajax加载的数据通过get不到完整页面源码
+
+  - 一种方案是采用一些第三方的工具，模拟浏览器的行为加载数据，如Selenium、PhantomJs等。
+
+  - 另外可以通过分析页面，找到请求借口，加载页面。其核心就是跟踪页面的交互行为 JS 触发调度，分析出有价值、有意义的核心调用（一般都是通过 JS 发起一个 HTTP 请求），然后我们使用 Python 直接访问逆向到的链接获取价值数据。通过“F12”进行分析，例如对于花瓣网，可以获得其链接为https://huaban.com/search/?q=%E7%9F%B3%E5%8E%9F%E9%87%8C%E7%BE%8E&kbk95lmw&page=4&per_page=20&wfl=1，如下图所示，更改‘page=*‘得到其他页面，`request.urlopen(url).read()`读取网页。
+
+    ![t](https://gitee.com/misite_J/blog-img/raw/master/img/huaban.png)
+
+- 其他问题...
