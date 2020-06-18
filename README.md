@@ -10,7 +10,7 @@
 
 ### 已知pic_url
 
-[pd_img_url.py](https://github.com/tmylla/Pic_download_via_py/blob/master/pd_img_url.py)：已知图片url，无需解析html，例如"http://xyz.com/series-*.jpg”的批量下载。
+[pd_img_url.py](https://github.com/tmylla/Pic_download_via_py/blob/master/pd_img_url.py)：已知图片url，无需解析html，例"http://xyz.com/series-*.jpg"的批量下载。
 
 ```
 	# 使用时修改以下两行信息即可
@@ -59,7 +59,7 @@
 
   - 一种方案是采用一些第三方的工具，模拟浏览器的行为加载数据，如Selenium、PhantomJs等。
 
-  - 另外可以通过分析页面，找到请求借口，加载页面。其核心就是跟踪页面的交互行为 JS 触发调度，分析出有价值、有意义的核心调用（一般都是通过 JS 发起一个 HTTP 请求），然后我们使用 Python 直接访问逆向到的链接获取价值数据。通过"F12”进行分析，例如对于花瓣网，可以获得其链接为"https://huaban.com/search/?q=%E7%9F%B3%E5%8E%9F%E9%87%8C%E7%BE%8E&kbk95lmw&page=4&per_page=20&wfl=1”，如下图所示，更改“page=*”得到其他页面，`request.urlopen(url).read()`读取网页。
+  - 另外可以通过分析页面，找到请求借口，加载页面。其核心就是跟踪页面的交互行为 JS 触发调度，分析出有价值、有意义的核心调用（一般都是通过 JS 发起一个 HTTP 请求），然后我们使用 Python 直接访问逆向到的链接获取价值数据。通过"F12”进行分析，例如对于花瓣网，可以获得其链接"https://huaban.com/search/?q=%E7%9F%B3%E5%8E%9F%E9%87%8C%E7%BE%8E&kbk95lmw&page=4&per_page=20&wfl=1"，如下图所示，更改“page=*”得到其他页面，`request.urlopen(url).read()`读取网页。
 
     ![](https://i.loli.net/2020/06/18/kdWIXVEYfwPi4s3.png)
 
